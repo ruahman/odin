@@ -3,5 +3,5 @@ package main
 import "core:fmt"
 
 main :: proc() {
-	fmt.println("hello world")
+	fmt.println("hello world odin")
 }
