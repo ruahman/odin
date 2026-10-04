@@ -1,0 +1,11 @@
+package main
+
+
+import "core:fmt"
+
+main :: proc() {
+	greetings := []string{"Hellope", "Bonjour", "こんにちは"}
+	for greeting, i in greetings {
+		fmt.println(i, "=", greeting)
+	}
+}
