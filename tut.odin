@@ -36,4 +36,8 @@ main :: proc() {
 		fmt.printfln("for while: {}", i)
 		i = i - 1
 	}
+	text := "hello world"
+	for letter in text {
+		fmt.printfln("letter: {}", letter)
+	}
 }
