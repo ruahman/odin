@@ -29,7 +29,47 @@ Every :: struct {
 	seconds: int,
 }
 
-read_configuration :: proc(filename: string, interval: Interval) -> (config: Configuration) {
+
+parse_configuration :: proc(data: []byte) -> (config: Configuration, err: ParsingError) {
+	return config, nil
+
+}
+
+ParsingError :: union {
+	InvalidSyntax,
+	InvalidValue,
+}
+
+ConfigurationError :: union {
+	ParsingError,
+	FileReadError,
+}
+
+InvalidSyntax :: struct {
+	line:   int,
+	column: int,
+	data:   []byte,
+}
+
+InvalidValue :: struct {
+	line:   int,
+	column: int,
+	data:   []byte,
+	value:  string,
+}
+
+FileReadError :: struct {
+	filename: string,
+	errno:    int,
+}
+
+read_configuration :: proc(
+	filename: string,
+	interval: Interval,
+) -> (
+	config: Configuration,
+	err: ConfigurationError,
+) {
 	config.filename = filename
 	config.interval = interval
 	switch i in interval {
@@ -43,5 +83,5 @@ read_configuration :: proc(filename: string, interval: Interval) -> (config: Con
 	if every, is_every := interval.(Every); is_every {
 		fmt.println("I run every: ", every.seconds, " seconds")
 	}
-	return config
+	return config, nil
 }

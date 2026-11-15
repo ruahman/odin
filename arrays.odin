@@ -27,6 +27,26 @@ main :: proc() {
 	for value in my_array3 {
 		fmt.println(value)
 	}
+
+	// Declare an array of five integers.
+	numbers: [5]int
+	fmt.println("empty:", numbers)
+
+	// Assign values using their indices.
+	numbers[0] = 1
+	numbers[1] = 2
+	numbers[2] = 3
+	numbers[3] = 4
+	numbers[4] = 5
+
+	fmt.println("values:", numbers)
+
+	// Access individual elements.
+	fmt.println("first:", numbers[0])
+	fmt.println("last:", numbers[4])
+
+	// len returns the number of elements.
+	fmt.println("len:", len(numbers))
 }
 
 modify_array :: proc(some_array: ^[5]int) {
